@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model player_stats {
+  id_player_stats                           Int       @id @default(autoincrement())
+  name_player                               String?
+  image_player                              String?
+  passing_yards_player_stats                Int?
+  yards_per_attempt_player_stats            Decimal?  @db.Decimal(8, 2)
+  attempts_player_stats                     Int?
+  completions_player_stats                  Int?
+  completion_percentage_player_stats        Decimal?  @db.Decimal(8, 2)
+  touchdowns_player_stats                   Int?
+  interceptions_player_stats                Int?
+  quarterback_rating_player_stats           Decimal?  @db.Decimal(8, 2)
+  first_downs_player_stats                  Int?
+  first_down_percentage_player_stats        Decimal?  @db.Decimal(8, 2)
+  twenty_plus_yard_completions_player_stats Int?
+  forty_plus_yard_completions_player_stats  Int?
+  longest_pass_player_stats                 Int?
+  sacks_player_stats                        Int?
+  sack_yards_player_stats                   Int?
+  data_player_stats                         Int?
+  data_cadastro                             DateTime? @default(now()) @db.Timestamptz(6)
+}
+
+model knex_migrations {
+  id             Int       @id @default(autoincrement())
+  name           String?   @db.VarChar(255)
+  batch          Int?
+  migration_time DateTime? @db.Timestamptz(6)
+}
+
+model knex_migrations_lock {
+  index     Int  @id @default(autoincrement())
+  is_locked Int?
+}
