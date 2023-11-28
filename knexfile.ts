@@ -1,10 +1,11 @@
 import type { Knex } from 'knex';
+import * as dotenv from 'dotenv';
 
+dotenv.config();
 const config: { [key: string]: Knex.Config } = {
   development: {
     client: 'pg',
-    connection:
-      'postgres://wewjjftg:NizeMusdrD7fZqlRXR2sPp0VTA6s3aFh@isabelle.db.elephantsql.com/wewjjftg',
+    connection: process.env.DATABASE_URL,
     searchPath: ['knex', 'public'],
     pool: { min: 0, max: 7 },
     migrations: {
